@@ -6,7 +6,7 @@ class PageController
 {
     public function home()
     {
-        include __DIR__ . '/../Views/home.php';
+        include __DIR__ . '../Views/home.php';
     }
 
     public function about()
