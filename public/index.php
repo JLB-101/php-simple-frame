@@ -2,29 +2,11 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use App\Controllers\PageController;
-use App\Controllers\AuthController;
+$router = new piecing\routing\Route();
+// esperado que  routes file retorne callable
+// or else this code would break
 
-// Definir a página inicial e configurar as rotas
-$uri = $_SERVER['REQUEST_URI'];
+$routes = require_once(__DIR__ . '/../app/routes.php');
+$routes($router);
 
-switch ($uri) {
-    case '/':
-        (new PageController())->home();
-        break;
-    case '/about':
-        (new PageController())->about();
-        break;
-    case '/contact':
-        (new PageController())->contact();
-        break;
-    case '/login':
-        (new AuthController())->login();
-        break;
-    case '/register':
-        (new AuthController())->register();
-        break;
-    default:
-        echo "Página não encontrada";
-        break;
-}
+print($router->dispatch());

@@ -6,7 +6,7 @@ class PageController
 {
     public function home()
     {
-        include __DIR__ . '../Views/home.php';
+        include __DIR__ . '/../app/Views/home.php';
     }
 
     public function about()
@@ -16,6 +16,11 @@ class PageController
 
     public function contact()
     {
-        include __DIR__ . '/../Views/pages/contact.php';
+        include(__DIR__ . '/../Views/pages/contact.php');
+    }
+
+    public function pageNotFound()
+    {
+        include __DIR__ . '/../app/Views/pages/404.php';
     }
 }
