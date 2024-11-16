@@ -7,20 +7,20 @@ class Route {
     protected $handler;
 
     public function __construct(string $method, string $path, callable $handler) {
-        $this->$method = $method;
+        $this->method = $method; // Correção aqui
         $this->path = $path;
         $this->handler = $handler;
     }
 
-    public function method(string $method) : string {
+    public function method(): string {
         return $this->method;
     }
 
-    public function path(string $path) : string {
+    public function path(): string {
         return $this->path;
     }
 
-    public function matches(string $method, string $path) : bool {
+    public function matches(string $method, string $path): bool {
       return $this->method === $method && $this->path === $path;  
     }
 

@@ -1,53 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- menu -- top - navbar -->
+<?php include_once(__DIR__ . '/../../public/s-assets/header.html') ?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../../public/./s-assets/./css/./styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
+<!-- BOBY -->
+<main class="">
+    <section id="piecing">
+        <div class="container-sm">
+            <h1>He!!o:</h1>
+            <p>" let's piecing [0.5] + [0,5] ... = [1].. "</p>
+        </div>
+    </section>
+    <section id="news">
+        <div class="container-sm">
+            <h1>news:</h1>
+            <p> Piecing now ! Last-distribuiction: 15/11/2024 </p>
 
-<body>
-    <!-- nav -->
-    <div class="topnav" id="myTopnav">
-        <a href="#home" class="active">Home</a>
-        <a href="#news">News</a>
-        <a href="#contact">Contact</a>
-        <a href="#about">About</a>
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-            <i class="fa fa-bars"></i>
-        </a>
-    </div>
+        </div>
+    </section>
+    <!-- <section id="services" class="py-sm">
+        <div class="container-sm">
+            <h1>services:</h1>
+            <p> . .. </p>
+        </div>
+    </section> -->
 
-    <div style="padding-left:16px">
-        <h2>Responsive Topnav Example</h2>
-        <p>Resize the browser window to see how it works.</p>
-    </div>
+    <!-- about -->
+    <section id="about" class="bg-white py-sm">
+        <div class="container-sm ">
+            <h1>about piecing:</h1>
+            <p class="text-dark"> [ Is simple php framework + html5, css3 and JS , . ] <br> + <br>[ modular and lightweight PHP framework built incrementally to facilitate secure, rapid information transport. ]
+                <br> = <br> [ With this simple framework you can make / build easy your our own apps, systems, blog and etc . .. ]
+            </p>
+            <p>
+            <pre>
+            it's only require php8 or + versions.
+            db_support: mysql, postgres and others , i: prepared to be connected mysql
+            othes tools: you can use bootstrap on,  
+            </pre>
 
-   
 
-    <!-- end nav -->
+            </p>
+            <a href="http://"> let's star now! > </a>
 
-    <div class="hello">
-        <h1>He!!o:</h1>
-        <p>" let's piecing [0.5] + [0,5] ... = [1].. "</p>
-    </div>
-    <footer>
+        </div>
+    </section>
 
-    </footer>
-    <!-- scripts -->
-    <script>
-        function myFunction() {
-            var x = document.getElementById("myTopnav");
-            if (x.className === "topnav") {
-                x.className += " responsive";
-            } else {
-                x.className = "topnav";
-            }
-        }
-    </script>
+    <section id="contact">
+        <div class="container-sm sp-bottom">
+            <h1>conact:</h1>
+            <p><a href="mailto:kuzacraft.contact@gmail.com"> <span class="text-black"> mail us ></span> </a> : for some thing "contribuiction" / "help" / "Ask something"</p>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<?php include_once(__DIR__ . '/../../public/s-assets/footer.html') ?>
+<!-- Scripts -->
+<!-- end Scripts -->
 </body>
+<!-- end BOBY -->
 
 </html>
