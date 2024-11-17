@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Controllers;
+namespace app\Controllers;
 
 class PageController
 {
     public function home()
     {
-        include __DIR__ . '/../app/Views/home.php';
+        include __DIR__ . '/../Views/home.php';
     }
 
     public function about()
@@ -21,6 +21,7 @@ class PageController
 
     public function pageNotFound()
     {
+        http_response_code(404);
         include __DIR__ . '/../app/Views/pages/404.php';
     }
 }

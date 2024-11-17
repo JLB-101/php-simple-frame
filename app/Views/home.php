@@ -1,3 +1,4 @@
+<title> Pagina inicial - piecing</title>
 <!-- menu -- top - navbar -->
 <?php include_once(__DIR__ . '/../../public/s-assets/header.html') ?>
 

@@ -47,10 +47,10 @@
             <p class="text-center text-dark"> Wellcome! > put your credetial to start. .. </p>
             <form>
                 <div class="mb-3">
-                    <input type="email" class="" placeholder="Email or username" required>
+                    <input type="email" name="email" placeholder="Email or username" required>
                 </div>
                 <div class="mb-3">
-                    <input type="password" class="" placeholder="Password" required>
+                    <input type="password" name="password" placeholder="Password" required>
                 </div>
 
                 <div class="mb-3">
