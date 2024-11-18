@@ -1,73 +1,81 @@
-<!-- style -->
-<style>
-    body,
-    html {
-        height: 100%;
-        margin: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: 'Tahoma', 'Verdana', 'Trebuchet MS', sans-serif;
-        color: #181A1C;
-        z-index: 100%;
-    }
+<!DOCTYPE html>
+<html lang="en">
 
-    .label-field {
-        color: rgb(11, 11, 11);
-        font-weight: 300;
-        text-decoration: none;
-        display: flex;
-        flex-direction: column;
-    }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Tahoma', 'Verdana', sans-serif;
+            background-color: #f5f5f5;
+        }
 
-    .input-field {
-        display: flex;
-        flex-direction: column;
-        text-align: center;
+        .card {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 350px;
+        }
 
+        .error {
+            color: red;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
 
-    }
+        .btn {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
-    .card {
-        background-color: #fff;
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0px 0px 10px rgba(12, 180, 222, 0.1);
-        text-align: center;
-    }
-</style>
-<!-- head-->
-<?php include_once(__DIR__ . '/../../../public/s-assets/head.html') ?>
+        .btn:hover {
+            background-color: #0056b3;
+        }
 
-<!-- BODY -->
-<main class="container-md">
-    <div class="form">
-        <div class="card py-sm">
-            <h2 class="text-center">Login</h2>
-            <p class="text-center text-dark"> Wellcome! > put your credetial to start. .. </p>
-            <form>
-                <div class="mb-3">
-                    <input type="email" name="email" placeholder="Email or username" required>
-                </div>
-                <div class="mb-3">
-                    <input type="password" name="password" placeholder="Password" required>
-                </div>
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
 
-                <div class="mb-3">
-                 <input type="submit" value="start" class="btn btn-primary text-light"> | <a href="/" class="">go back</a>
+<body>
+    <div class="card">
+        <h2>Login</h2>
+        <p>Bem-vindo! Insira suas credenciais.</p>
+        
+        <?php if (isset($_SESSION['error'])): ?>
+            <div class="error"><?= $_SESSION['error']; unset($_SESSION['error']); ?></div>
+        <?php endif; ?>
 
-                </div>
-                <hr>
-                <a href="#" class="btn btn-secondary btn-sm">sign-up</a>
-            </form>
-        </div>
-</main>
+        <form action="/login" method="post">
+            <!-- Token CSRF -->
+            <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
 
-<!-- Footer -->
-<?php include_once(__DIR__ . '/../../../public/s-assets/footer.html') ?>
-<!-- Scripts -->
-<!-- end Scripts -->
+            <input type="email" name="email" placeholder="Email ou usuário" required>
+            <input type="password" name="password" placeholder="Senha" required>
+            <button type="submit" class="btn">Entrar</button>
+        </form>
+
+        <p><a href="/register">Cadastre-se</a></p>
+    </div>
 </body>
-<!-- end BOBY -->
 
 </html>

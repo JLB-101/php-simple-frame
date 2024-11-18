@@ -5,7 +5,7 @@ return [
         'host' => getenv('DB_HOST') ?: 'localhost', 
         'dbname' => getenv('DB_NAME') ?: 'peing_db',
         'user' => getenv('DB_USER') ?: 'root',
-        'password' => getenv('DB_PASSWORD') ?: '',
+        'password' => getenv('DB_PASSWORD') ?: 'root',
     ],
 
     // Configuração de sessão

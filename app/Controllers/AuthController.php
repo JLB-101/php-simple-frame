@@ -2,22 +2,34 @@
 
 namespace app\Controllers;
 
-use App\Models\User;
+use app\Models\User;
 
 class AuthController
 {
     public function __construct()
     {
         session_start();
+        // Gera um token CSRF se não existir
+        if (empty($_SESSION['csrf_token'])) {
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+        }
     }
 
     // Tela de login
     public function login()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $email = $_POST['email'];
-            $password = $_POST['password'];
 
+            // Proteção contra CSRF
+            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+                die("CSRF token inválido.");
+            }
+
+            // Sanitizar entrada
+            $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+            $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+
+             // Busca o usuário
             $user = User::findByEmail($email);
 
             if ($user && password_verify($password, $user->password)) {
@@ -25,7 +37,9 @@ class AuthController
                 header('Location: /dashboard');
                 exit();
             } else {
-                echo "Credenciais inválidas.";
+                $_SESSION['error'] = "Credenciais inválidas.";
+                header('Location: /login');
+                exit();
             }
         }
 
@@ -42,6 +56,7 @@ class AuthController
     public function checkAuth()
     {
         if (!isset($_SESSION['user_id'])) {
+            $_SESSION['redirect_to'] = $_SERVER['REQUEST_URI'];
             header('Location: /login');
             exit();
         }
