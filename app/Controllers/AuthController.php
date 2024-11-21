@@ -27,7 +27,8 @@ class AuthController
 
             // Sanitizar entrada
             $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-            $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+            $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_ENCODED);
+            
 
              // Busca o usuário
             $user = User::findByEmail($email);

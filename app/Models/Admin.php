@@ -1,10 +1,11 @@
-<?php
-
+<?php 
 namespace app\Models;
 
 use app\Database\Connection;
 
-class User
+use app\Models\UserManager;
+
+class Admin extends UserManager
 {
     private $id;
     private $name;
@@ -15,13 +16,15 @@ class User
     private $created_at;
     private $updated_at;
 
-    public function __construct($name = null, $email = null, $password = null, $role = 1)
+    // Construtor
+    public function __construct($name = null, $email = null, $password = null, $role = $role )
     {
+        // O Role 0 é para Admin
         $this->name = $name;
         $this->email = $email;
         $this->password = $password;
         $this->role = $role;
-        $this->active = 1; // Usuário ativo por padrão
+        $this->active = 1; // Administrador ativo por padrão
     }
 
     // Getters e Setters
@@ -106,11 +109,14 @@ class User
     }
 
     /**
-     * Cria um novo usuário no banco de dados.
+     * Cria um novo administrador no banco de dados.
      *
-     * @return int ID do usuário criado.
+     * @param string $name
+     * @param string $email
+     * @param string $password
+     * @return int ID do administrador criado.
      */
-    public function create(): int
+    public function createAdmin(): int
     {
         $query = "INSERT INTO users (name, email, password, role, active) VALUES (?, ?, ?, ?, ?)";
         $params = [$this->name, $this->email, password_hash($this->password, PASSWORD_DEFAULT), $this->role, $this->active];
@@ -118,11 +124,11 @@ class User
     }
 
     /**
-     * Atualiza os dados de um usuário no banco de dados.
+     * Atualiza os dados de um administrador.
      *
      * @return int Número de linhas afetadas.
      */
-    public function update(): int
+    public function updateAdmin(): int
     {
         $query = "UPDATE users SET name = ?, email = ?, password = ?, active = ? WHERE id = ?";
         $params = [$this->name, $this->email, password_hash($this->password, PASSWORD_DEFAULT), $this->active, $this->id];
@@ -130,31 +136,35 @@ class User
     }
 
     /**
-     * Busca um item no banco de dados.
-     * Pode ser utilizado para buscar usuários por qualquer campo.
+     * Exclui um administrador do banco de dados.
      *
-     * @param string $column
-     * @param mixed $value
-     * @return User|null
+     * @param string $email
+     * @return int Número de linhas afetadas.
      */
-    public static function findItem($column, $value): ?self
+    public static function deleteAdminByEmail(string $email): int
     {
-        $query = "SELECT * FROM users WHERE $column = ?";
-        $result = Connection::selectOne($query, [$value]);
-
-        if ($result) {
-            $user = new self();
-            $user->setId($result['id']);
-            $user->setName($result['name']);
-            $user->setEmail($result['email']);
-            $user->setPassword($result['password']);
-            $user->setRole($result['role']);
-            $user->setActive($result['active']);
-            $user->setCreatedAt($result['created_at']);
-            $user->setUpdatedAt($result['updated_at']);
-            return $user;
-        }
-
-        return null;
+        return Connection::execute("DELETE FROM users WHERE email = ? AND role = 0", [$email]); // Deleta o administrador pelo e-mail
     }
+
+    /**
+     * Retorna todos os administradores.
+     *
+     * @return array
+     */
+    public static function getAllAdmins(): array
+    {
+        return Connection::select("SELECT * FROM users WHERE role = 0"); // Administradores (role = 0)
+    }
+
+    /**
+     * Busca um administrador pelo e-mail.
+     *
+     * @param string $email
+     * @return Admin|null
+     */
+    public static function findAdminByEmail(string $email): ?self
+    {
+        return User::findItem('email', $email); // Utiliza o método findItem para buscar o admin
+    }
+
 }

@@ -1,5 +1,5 @@
 <?php include_once(__DIR__ . '/../../../public/s-assets/head.html') ?>
-<title>Login</title>
+
 <style>
     body,
     html {
@@ -13,10 +13,10 @@
     }
 
     .card {
-        background-color: #fff;
+        background-color: #f2f2f2;
         padding: 30px;
         border-radius: 10px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 0px 10px rgba(10, 5, 5, 0.1);
         text-align: center;
         width: 350px;
     }
@@ -53,26 +53,26 @@
 
 <body>
     <div class="card">
-        <h2>Login</h2>
-        <p>Bem-vindo! Insira suas credenciais.</p>
+        <h2>Account register</h2>
+        <p class="text-dark">Wellcome! create new account to be able to log in.</p>
 
 
 
-        <form action="/login" method="post">
+        <form action="/register" method="post">
             <!-- Token CSRF -->
             <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
 
             <input type="email" name="email" placeholder="Email ou usuário" required>
             <input type="password" name="password" placeholder="Senha" required>
-           
             <?php if (isset($_SESSION['error'])): ?>
                 <div class="error"><?= $_SESSION['error'];
                                     unset($_SESSION['error']); ?></div>
             <?php endif; ?>
-            <button type="submit" class="btn">Log in</button>
+            <button type="submit" class="btn">create account</button>
+
         </form>
 
-        <p><a href="/register">sign-in</a></p>
+        <p><a href="/login">let's login</a></p>
     </div>
 </body>
 

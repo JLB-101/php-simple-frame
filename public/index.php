@@ -9,8 +9,10 @@ require_once __DIR__ . '/../vendor/autoload.php';
 // este diretamente o carregamento da classe: true
 // var_dump(class_exists('piecing\routing\Router'));
 
+// $config = require __DIR__ . '/../app/config/config.php';
+// var_dump($config);
 
-// var_dump(class_exists(PageController::class));
+
 
 // exibição de erros para depuração
 ini_set('display_errors', 1);

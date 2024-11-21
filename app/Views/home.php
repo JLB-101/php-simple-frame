@@ -32,13 +32,9 @@
                 <br> = <br> [ With this simple framework you can make / build easy your our own apps, systems, blog and etc . .. ]
             </p>
             <p>
-            <pre>
             it's only require php8 or + versions.
             db_support: mysql, postgres and others , i: prepared to be connected mysql
             othes tools: you can use bootstrap on,  
-            </pre>
-
-
             </p>
             <a href="http://"> let's star now! > </a>
 

@@ -22,6 +22,6 @@ class PageController
     public function pageNotFound()
     {
         http_response_code(404);
-        include __DIR__ . '/../app/Views/pages/404.php';
+        include __DIR__ . '/../Views/pages/404.php';
     }
 }
